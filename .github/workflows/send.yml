@@ -1,0 +1,20 @@
+on: [push]
+
+jobs:
+  pingme-job:
+    runs-on: self-hosted
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run pingme cli
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          PUSHOVER_TITLE: 'Refrence: ${{ github.ref }}'
+          PUSHOVER_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
+        uses: ./ 
+        with:
+          # Chose the messaging platform. 
+          # slack / telegram / rocketchat / teams / pushover / discord / email
+          service: pushover
