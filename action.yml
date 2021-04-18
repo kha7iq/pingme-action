@@ -1,0 +1,16 @@
+
+name: 'PingMe'
+description: 'PingMe - Send message to multiple platforms'
+author: 'Abdul Khaliq <a.khaliq@outlook.my>'
+branding:
+  icon: 'send'
+  color: 'yellow'
+inputs:
+  service:
+    description: 'Messaging platform to which message will be sent'
+    required: true
+runs:
+  using: 'docker'
+  image: 'ghcr.io/kha7iq/pingme:latest'
+  args:
+    - ${{ inputs.service }}
