@@ -1,19 +1,27 @@
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
+  # Also trigger on release events
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types: [published, created]
+
 
 jobs:
   pingme-job:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: PingMe
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run pingme cli
+        uses: kha7iq/pingme-action@v1
         env:
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
           PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
           PUSHOVER_TITLE: 'Refrence: ${{ github.ref }}'
           PUSHOVER_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
-        uses: ./ 
         with:
           # Chose the messaging platform. 
           # slack / telegram / rocketchat / teams / pushover / discord / email
