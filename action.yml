@@ -11,6 +11,6 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'ghcr.io/kha7iq/pingme:latest'
+  image: 'docker://ghcr.io/kha7iq/pingme:latest'
   args:
     - ${{ inputs.service }}
