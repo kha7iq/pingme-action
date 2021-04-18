@@ -4,7 +4,7 @@ description: 'PingMe - Send message to multiple platforms'
 author: 'Abdul Khaliq <a.khaliq@outlook.my>'
 branding:
   icon: 'send'
-  color: 'yellow'
+  color: 'green'
 inputs:
   service:
     description: 'Messaging platform to which message will be sent'
