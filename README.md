@@ -30,6 +30,7 @@ You can view the [**PingMe**](https://github.com/kha7iq/pingme) repository on gi
 - *Slack*
 - *Telegram*
 - *Pushover*
+- *Mattermost*
 
 
 # Usage Example
@@ -224,4 +225,33 @@ jobs:
           # Chose the messaging platform. 
           # slack / telegram / rocketchat / teams / pushover / discord / email
           service: teams
+```
+
+## Mattermost
+
+```yaml
+on:
+  release:
+    types: [published]
+jobs:
+  pingme-job:
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          MATTERMOST_TOKEN: ${{ secrets.MATTERMOST_TOKEN }}
+          ROCKETCHAT_SERVER_URL: ${{ secrets.ROCKETCHAT_SERVER_URL }}
+          MATTERMOST_CHANNELS: ${{ secrets.MATTERMOST_CHANNELS }}
+          MATTERMOST_CHANNELS: ${{ secrets.MATTERMOST_CHANNELS }}
+          MATTERMOST_TITLE: 'Refrence: ${{ github.ref }}'
+          MATTERMOST_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
+        with:
+          # Chose the messaging platform.
+          # slack / telegram / rocketchat / teams / pushover / discord / email / mattermost
+          service: mattermost
 ```
