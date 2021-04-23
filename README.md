@@ -103,7 +103,7 @@ jobs:
       - name: Ping me On
         uses: kha7iq/pingme-action@v1
         env:
-          PUSHOVER_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           SLACK_CHANNELS: ${{ secrets.SLACK_CHANNELS }}
           SLACK_MSG_TITLE: 'Refrence: ${{ github.ref }}'
           SLACK_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
@@ -189,10 +189,8 @@ jobs:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
-          ROCKETCHAT_CHANNELS: ${{ secrets.ROCKETCHAT_CHANNELS }}
           EMAIL_HOST: 'smtp.gmail.com'
           EMAIL_PORT: '587'
-          ROCKETCHAT_URL_SCHEME: "https"
           EMAIL_SUBJECT: 'Refrence: ${{ github.ref }}'
           EMAIL_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
@@ -217,10 +215,8 @@ jobs:
         uses: kha7iq/pingme-action@v1
         env:
           TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
-          TELEGRAM_CHANNELS: ${{ secrets.TELEGRAM_CHANNELS }}
           TEAMS_MSG_TITLE: 'Refrence: ${{ github.ref }}'
-          TEAMS_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
-        
+          TEAMS_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'   
         with:
           # Chose the messaging platform. 
           # slack / telegram / rocketchat / teams / pushover / discord / email
@@ -245,8 +241,7 @@ jobs:
         uses: kha7iq/pingme-action@v1
         env:
           MATTERMOST_TOKEN: ${{ secrets.MATTERMOST_TOKEN }}
-          ROCKETCHAT_SERVER_URL: ${{ secrets.ROCKETCHAT_SERVER_URL }}
-          MATTERMOST_CHANNELS: ${{ secrets.MATTERMOST_CHANNELS }}
+          MATTERMOST_SERVER_URL: ${{ secrets.MATTERMOST_SERVER_URL }}
           MATTERMOST_CHANNELS: ${{ secrets.MATTERMOST_CHANNELS }}
           MATTERMOST_TITLE: 'Refrence: ${{ github.ref }}'
           MATTERMOST_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
