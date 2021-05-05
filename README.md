@@ -26,11 +26,13 @@ You can view the [**PingMe**](https://github.com/kha7iq/pingme) repository on gi
 - *Discord*
 - *Email*
 - *Microsoft Teams*
+- *Mattermost*
+- *Pushover*
+- *Pushbullet*
 - *RocketChat*
 - *Slack*
 - *Telegram*
-- *Pushover*
-- *Mattermost*
+- *Twillio*
 
 
 # Usage Example
@@ -57,7 +59,7 @@ jobs:
         
         with:
           # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
+          # slack / telegram / rocketchat / teams / pushover / discord / email / pushbullet / twillio
           service: telegram
 ```
 
@@ -82,8 +84,6 @@ jobs:
           PUSHOVER_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: pushover
 ```
 
@@ -108,8 +108,6 @@ jobs:
           SLACK_MSG_TITLE: 'Refrence: ${{ github.ref }}'
           SLACK_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: slack
 ```
 
@@ -133,14 +131,9 @@ jobs:
           ROCKETCHAT_TOKEN: ${{ secrets.ROCKETCHAT_TOKEN }}
           ROCKETCHAT_SERVER_URL: ${{ secrets.ROCKETCHAT_SERVER_URL }}
           ROCKETCHAT_CHANNELS: ${{ secrets.ROCKETCHAT_CHANNELS }}
-          ROCKETCHAT_USERID: ${{ secrets.ROCKETCHAT_USERID }}
-          ROCKETCHAT_CHANNELS: ${{ secrets.ROCKETCHAT_CHANNELS }}
-          ROCKETCHAT_URL_SCHEME: "https"
           ROCKETCHAT_TITLE: 'Refrence: ${{ github.ref }}'
           ROCKETCHAT_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: rocketchat
 ```
 ## Discord
@@ -164,8 +157,6 @@ jobs:
           DISCORD_MSG_TITLE: 'Refrence: ${{ github.ref }}'
           DISCORD_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: discord
 ```
 
@@ -194,8 +185,6 @@ jobs:
           EMAIL_SUBJECT: 'Refrence: ${{ github.ref }}'
           EMAIL_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: email
 ```
 
@@ -218,8 +207,6 @@ jobs:
           TEAMS_MSG_TITLE: 'Refrence: ${{ github.ref }}'
           TEAMS_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'   
         with:
-          # Chose the messaging platform. 
-          # slack / telegram / rocketchat / teams / pushover / discord / email
           service: teams
 ```
 
@@ -246,7 +233,32 @@ jobs:
           MATTERMOST_TITLE: 'Refrence: ${{ github.ref }}'
           MATTERMOST_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
         with:
-          # Chose the messaging platform.
-          # slack / telegram / rocketchat / teams / pushover / discord / email / mattermost
           service: mattermost
+```
+
+## Twillio
+
+```yaml
+on:
+  release:
+    types: [published]
+jobs:
+  pingme-job:
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          TWILLIO_TOKEN: ${{ secrets.TWILLIO_TOKEN }}
+          TWILLIO_ACCOUNT_SID: ${{ secrets.TWILLIO_ACCOUNT_SID }}
+          TWILLIO_SENDER: ${{ secrets.TWILLIO_SENDER }}
+          TWILLIO_RECEIVER: ${{ secrets.TWILLIO_RECEIVER }}
+          TWILLIO_TITLE: 'Refrence: ${{ github.ref }}'
+          TWILLIO_MESSAGE: 'Event is triggerd by ${{ github.event_name }}'
+        with:
+          service: twillio
 ```
