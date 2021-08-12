@@ -3,20 +3,19 @@
   <p align="center"><img width=20% src="https://raw.githubusercontent.com/kha7iq/pingme/master/.github/img/logo.png"></p>
 </h2>
 
+
 <p align="center">
-  <a href="#telegram">Telegram</a> •
-  <a href="#pushover">Pushover</a> •
-  <a href="#slack">Slack</a> •
-  <a href="#rocketchat">RocketChat</a> •
-  <a href="#discord">Discord</a> •
-  <a href="#email">Email</a> •
-  <a href="#microsoft-teams">Microsoft Teams</a> •
-  <a href="#gotify">Gotify</a> •
-  <a href="#line">Line</a> •
-  <a href="#mattermost">Mattermost</a> •
-  <a href="#mastodon">Mastodon</a> •
-  <a href="#textmagic">Textmagic</a> •
-  <a href="#zulip">Zulip</a> •
+   <a href="https://github.com/kha7iq/pingme-action/releases">
+   <img alt="Release" src="https://img.shields.io/github/v/release/kha7iq/pingme-action">
+   <a href="https://hub.docker.com/r/khaliq/pingme">
+   <img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/khaliq/pingme">
+   <a href="#">
+   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/kha7iq/pingme-action">
+   <a href="https://github.com/kha7iq/pingme-action/issues">
+   <img alt="GitHub issues" src="https://img.shields.io/github/issues/kha7iq/pingme-action?style=flat-square&logo=github&logoColor=white">
+   <a href="https://github.com/kha7iq/pingme-action/blob/master/LICENSE.md">
+   <img alt="License" src="https://img.shields.io/github/license/kha7iq/pingme-action">
+</a>
 </p>
 
 ---
@@ -28,22 +27,24 @@
 You can view the [**PingMe Documentation**](https://pingme.lmno.pk) for complete configurations.
 
 ## Supported services
-- *Discord*
-- *Email*
-- *Gotify*
-- *Line*
-- *Mastodon*
-- *Mattermost*
-- *Microsoft Teams*
-- *Pushbullet*
-- *Pushover*
-- *RocketChat*
-- *Slack*
-- *Telegram*
-- *Textmagic*
-- *Twillio*
-- *Zulip*
-- *Wechat*
+
+  - [Telegram](#telegram)
+  - [Pushover](#pushover)
+  - [PushBullet](#pushbullet)
+  - [Slack](#slack)
+  - [RocketChat](#rocketchat)
+  - [Discord](#discord)
+  - [Email](#email)
+  - [Microsoft Teams](#microsoft-teams)
+  - [Mattermost](#mattermost)
+  - [Twillio](#twillio)
+  - [Gotify](#gotify)
+  - [Line](#line)
+  - [Mattermost](#mattermost-1)
+  - [Mastodon](#mastodon)
+  - [Textmagic](#textmagic)
+  - [WeChat](#wechat)
+  - [Zulip](#zulip)
 
 
 # Usage Example
@@ -96,6 +97,30 @@ jobs:
         
         with:
           service: pushover
+```
+
+## PushBullet
+
+```yaml
+on: [push]
+
+jobs:
+  pingme-job:
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          PUSHBULLET_TOKEN: ${{ secrets.PUSHBULLET_TOKEN }}
+          PUSHBULLET_DEVICE: ${{ secrets.PUSHBULLET_DEVICE }}
+          PUSHBULLET_TITLE: 'Reference: ${{ github.ref }}'
+          PUSHBULLET_MESSAGE: 'Event is triggered by ${{ github.event_name }}'
+        with:
+          service: pushbullet
 ```
 
 ## Slack
@@ -399,6 +424,35 @@ jobs:
           TEXTMAGIC_RECEIVER:  ${{ secrets.TEXTMAGIC_RECEIVER }}
         with:
           service: textmagic
+```
+
+## WeChat
+
+```yaml
+on: [push]
+
+jobs:
+  pingme-job:
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          WECHAT_APPID: ${{ secrets.WECHAT_APPID }}
+          WECHAT_APPSECRET: ${{ secrets.WECHAT_APPSECRET }}
+          WECHAT_TOKEN: ${{ secrets.WECHAT_TOKEN }}
+          WECHAT_ENCODINGAESKEY: ${{ secrets.WECHAT_ENCODINGAESKEY }}
+          WECHAT_RECEIVER_IDS: ${{ secrets.WECHAT_RECEIVER_IDS }}
+          WECHAT_MSG_TITLE: 'Reference: ${{ github.ref }}'
+          WECHAT_MESSAGE: 'Event is triggered by ${{ github.event_name }}'
+        
+        with:
+          service: wechat
+
 ```
 
 ## Zulip
